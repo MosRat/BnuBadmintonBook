@@ -84,64 +84,6 @@ def prevent_io(sematime=3):
 
 
 
-hd = deal_arg(f'''Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Accept-Encoding: gzip, deflate, br
-Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
-Cache-Control: max-age=0
-Connection: keep-alive
-Cookie: JSESSIONID={cookies}
-Host: cgyd.prsc.bnu.edu.cn
-sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47''')
-
-data = f'''bookData.totalCost: 
-bookData.book_person_zjh: 
-bookData.book_person_name: 
-bookData.book_person_phone: 17879539869
-gymnasium_idForCache: 2
-item_idForCache: 5326
-time_dateForCache: 2022-10-21
-userTypeNumForCache: 1
-putongRes: putongRes
-selectedPayWay: 1
-allFieldTime: 5477#2022-10-21
-companion_1: 
-companion_2: 
-companion_3: 
-companion_4: 
-companion_5: 
-companion_6: 
-companion_7: 
-companion_8: 
-companion_9: 
-checkcodeuser: 55
-selectPayWay: 1'''
-head = deal_arg(f'''Accept: */*
-Accept-Encoding: gzip, deflate, br
-Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
-Connection: keep-alive
-Content-Length: 423
-Content-Type: application/x-www-form-urlencoded
-Cookie: JSESSIONID={cookies}
-Host: cgyd.prsc.bnu.edu.cn
-Origin: https://cgyd.prsc.bnu.edu.cn
-Referer: https://cgyd.prsc.bnu.edu.cn/gymbook/gymBookAction.do?ms=viewGymBook&gymnasium_id=2&item_id=&time_date=&userType=
-sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-Sec-Fetch-Dest: empty
-Sec-Fetch-Mode: cors
-Sec-Fetch-Site: same-origin
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
-X-Requested-With: XMLHttpRequest''')
-datas = deal_arg(data)
 
 
 def get_code():
@@ -164,6 +106,7 @@ async def go(i, times):
 
 
 def main():
+
     # mode = input("输入模式，pp乓乓球，bd羽毛球：")
     times = input("时间：%M-%d：")
     # datas['item_idForCache'] = item[mode]
@@ -176,9 +119,67 @@ def main():
 
 
 if __name__ == '__main__':
-    cook=input("请输入cookie：")
-    if cook :
-        cookies=cook
+    cook = input("请输入cookie：")
+    if cook:
+        cookies = cook
+    hd = deal_arg(f'''Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cache-Control: max-age=0
+Connection: keep-alive
+Cookie: JSESSIONID={cookies}
+Host: cgyd.prsc.bnu.edu.cn
+sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47''')
+
+    data = f'''bookData.totalCost: 
+bookData.book_person_zjh: 
+bookData.book_person_name: 
+bookData.book_person_phone: 17879539869
+gymnasium_idForCache: 2
+item_idForCache: 5326
+time_dateForCache: 2022-10-21
+userTypeNumForCache: 1
+putongRes: putongRes
+selectedPayWay: 1
+allFieldTime: 5477#2022-10-21
+companion_1: 
+companion_2: 
+companion_3: 
+companion_4: 
+companion_5: 
+companion_6: 
+companion_7: 
+companion_8: 
+companion_9: 
+checkcodeuser: 55
+selectPayWay: 1'''
+    head = deal_arg(f'''Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Connection: keep-alive
+Content-Length: 423
+Content-Type: application/x-www-form-urlencoded
+Cookie: JSESSIONID={cookies}
+Host: cgyd.prsc.bnu.edu.cn
+Origin: https://cgyd.prsc.bnu.edu.cn
+Referer: https://cgyd.prsc.bnu.edu.cn/gymbook/gymBookAction.do?ms=viewGymBook&gymnasium_id=2&item_id=&time_date=&userType=
+sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+X-Requested-With: XMLHttpRequest''')
+    datas = deal_arg(data)
     main()
 
 # ls=deal_arg('''bookData.totalCost:
