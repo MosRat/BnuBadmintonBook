@@ -9,239 +9,6 @@ from requests_html import HTMLSession, AsyncHTMLSession
 
 s = HTMLSession()
 sa = AsyncHTMLSession()
-ids={
-  "5877": [
-    "18:00-19:00',",
-    "羽1"
-  ],
-  "5927": [
-    "18:00-19:00',",
-    "羽2"
-  ],
-  "5977": [
-    "18:00-19:00',",
-    "羽3"
-  ],
-  "6027": [
-    "18:00-19:00',",
-    "羽4"
-  ],
-  "35406": [
-    "18:00-19:00',",
-    "羽5"
-  ],
-  "35456": [
-    "18:00-19:00',",
-    "羽6"
-  ],
-  "35506": [
-    "18:00-19:00',",
-    "羽7"
-  ],
-  "35556": [
-    "18:00-19:00',",
-    "羽8"
-  ],
-  "50399": [
-    "18:00-19:00',",
-    "小综合1"
-  ],
-  "50449": [
-    "18:00-19:00',",
-    "小综合2"
-  ],
-  "50499": [
-    "18:00-19:00',",
-    "小综合3"
-  ],
-  "50549": [
-    "18:00-19:00',",
-    "小综合4"
-  ],
-  "737974": [
-    "18:00-19:00',",
-    "二层东"
-  ],
-  "738025": [
-    "18:00-19:00',",
-    "二层西"
-  ],
-  "5875": [
-    "19:00-20:00',",
-    "羽1"
-  ],
-  "5925": [
-    "19:00-20:00',",
-    "羽2"
-  ],
-  "5975": [
-    "19:00-20:00',",
-    "羽3"
-  ],
-  "6025": [
-    "19:00-20:00',",
-    "羽4"
-  ],
-  "35404": [
-    "19:00-20:00',",
-    "羽5"
-  ],
-  "35454": [
-    "19:00-20:00',",
-    "羽6"
-  ],
-  "35504": [
-    "19:00-20:00',",
-    "羽7"
-  ],
-  "35554": [
-    "19:00-20:00',",
-    "羽8"
-  ],
-  "50397": [
-    "19:00-20:00',",
-    "小综合1"
-  ],
-  "50447": [
-    "19:00-20:00',",
-    "小综合2"
-  ],
-  "50497": [
-    "19:00-20:00',",
-    "小综合3"
-  ],
-  "50547": [
-    "19:00-20:00',",
-    "小综合4"
-  ],
-  "737972": [
-    "19:00-20:00',",
-    "二层东"
-  ],
-  "738023": [
-    "19:00-20:00',",
-    "二层西"
-  ],
-  "5873": [
-    "20:00-21:00',",
-    "羽1"
-  ],
-  "5923": [
-    "20:00-21:00',",
-    "羽2"
-  ],
-  "5973": [
-    "20:00-21:00',",
-    "羽3"
-  ],
-  "6023": [
-    "20:00-21:00',",
-    "羽4"
-  ],
-  "35402": [
-    "20:00-21:00',",
-    "羽5"
-  ],
-  "35452": [
-    "20:00-21:00',",
-    "羽6"
-  ],
-  "35502": [
-    "20:00-21:00',",
-    "羽7"
-  ],
-  "35552": [
-    "20:00-21:00',",
-    "羽8"
-  ],
-  "50395": [
-    "20:00-21:00',",
-    "小综合1"
-  ],
-  "50445": [
-    "20:00-21:00',",
-    "小综合2"
-  ],
-  "50495": [
-    "20:00-21:00',",
-    "小综合3"
-  ],
-  "50545": [
-    "20:00-21:00',",
-    "小综合4"
-  ],
-  "737970": [
-    "20:00-21:00',",
-    "二层东"
-  ],
-  "738021": [
-    "20:00-21:00',",
-    "二层西"
-  ],
-  "5871": [
-    "21:00-22:00',",
-    "羽1"
-  ],
-  "5921": [
-    "21:00-22:00',",
-    "羽2"
-  ],
-  "5971": [
-    "21:00-22:00',",
-    "羽3"
-  ],
-  "6021": [
-    "21:00-22:00',",
-    "羽4"
-  ],
-  "35400": [
-    "21:00-22:00',",
-    "羽5"
-  ],
-  "35450": [
-    "21:00-22:00',",
-    "羽6"
-  ],
-  "35500": [
-    "21:00-22:00',",
-    "羽7"
-  ],
-  "35550": [
-    "21:00-22:00',",
-    "羽8"
-  ],
-  "50393": [
-    "21:00-22:00',",
-    "小综合1"
-  ],
-  "50443": [
-    "21:00-22:00',",
-    "小综合2"
-  ],
-  "50493": [
-    "21:00-22:00',",
-    "小综合3"
-  ],
-  "50543": [
-    "21:00-22:00',",
-    "小综合4"
-  ],
-  "737968": [
-    "21:00-22:00',",
-    "二层东"
-  ],
-  "738019": [
-    "21:00-22:00',",
-    "二层西"
-  ]
-}
-
-
-
-
-
-
-
 
 
 def last_task(func, loop_list, add_args=True, unpack_args='', **kwargs):
@@ -279,11 +46,8 @@ def deal_arg(content: str):
     d = dict(ls)
     return d
 
-try:
-    with open('1.json','r' ,encoding='utf8') as f:
-        dt = json.load(f)
-except:
-    dt=ids
+with open('1.json','r' ,encoding='utf8') as f:
+    dt = json.load(f)
 
 
 
@@ -320,7 +84,64 @@ def prevent_io(sematime=3):
 
 
 
+hd = deal_arg(f'''Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cache-Control: max-age=0
+Connection: keep-alive
+Cookie: JSESSIONID={cookies}
+Host: cgyd.prsc.bnu.edu.cn
+sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47''')
 
+data = f'''bookData.totalCost: 
+bookData.book_person_zjh: 
+bookData.book_person_name: 
+bookData.book_person_phone: 17879539869
+gymnasium_idForCache: 2
+item_idForCache: 5326
+time_dateForCache: 2022-10-21
+userTypeNumForCache: 1
+putongRes: putongRes
+selectedPayWay: 1
+allFieldTime: 5477#2022-10-21
+companion_1: 
+companion_2: 
+companion_3: 
+companion_4: 
+companion_5: 
+companion_6: 
+companion_7: 
+companion_8: 
+companion_9: 
+checkcodeuser: 55
+selectPayWay: 1'''
+head = deal_arg(f'''Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Connection: keep-alive
+Content-Length: 423
+Content-Type: application/x-www-form-urlencoded
+Cookie: JSESSIONID={cookies}
+Host: cgyd.prsc.bnu.edu.cn
+Origin: https://cgyd.prsc.bnu.edu.cn
+Referer: https://cgyd.prsc.bnu.edu.cn/gymbook/gymBookAction.do?ms=viewGymBook&gymnasium_id=2&item_id=&time_date=&userType=
+sec-ch-ua: "Chromium";v="106", "Microsoft Edge";v="106", "Not;A=Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+X-Requested-With: XMLHttpRequest''')
+datas = deal_arg(data)
 
 
 def get_code():
@@ -343,23 +164,6 @@ async def go(i, times):
 
 
 def main():
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     # mode = input("输入模式，pp乓乓球，bd羽毛球：")
     times = input("时间：%M-%d：")
     # datas['item_idForCache'] = item[mode]
