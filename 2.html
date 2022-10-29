@@ -1,0 +1,910 @@
+<!-- 学生网上预定 -->
+
+
+
+ 
+
+
+
+
+ 
+ 
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>北京师范大学体育馆管理与网上预约系统</title>
+<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" id="main-theme-script">
+<link href="../css/themes/default.css" rel="stylesheet" id="theme-specific-script">
+<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<link type="text/css" href="../page.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jquery/jquery-1.7.js" ></script>
+<link href="../css/simplenso.css" rel="stylesheet">
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js "></script>
+<script src="../scripts/jquery.cookie/jquery.cookie.js"></script>
+<script src="../scripts/simplenso/simplenso.js"></script>
+<script src="../My97DatePicker/WdatePicker.js"></script>
+
+<script src="../gymjs/gymcommon.js"></script>
+<script src="../gymjs/gymbook.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	initResourceTable(parent.limitBookDate,parent.limitBookCount,parent.time_date,parent.day_sable);
+	
+	
+		markStatusColor('5871','学生','1','');
+	
+		markStatusColor('5873','学生','1','');
+	
+		markStatusColor('5875','学生','1','');
+	
+		markStatusColor('5877','学生','1','');
+	
+		markStatusColor('5921','学生','1','');
+	
+		markStatusColor('5923','学生','1','');
+	
+		markStatusColor('5925','学生','1','');
+	
+		markStatusColor('5927','学生','1','');
+	
+		markStatusColor('5971','学生','1','');
+	
+		markStatusColor('5973','学生','1','');
+	
+		markStatusColor('5975','学生','1','');
+	
+		markStatusColor('5977','学生','1','');
+	
+		markStatusColor('6021','学生','1','');
+	
+		markStatusColor('6023','学生','1','');
+	
+		markStatusColor('6025','学生','1','');
+	
+		markStatusColor('6027','学生','1','');
+	
+		markStatusColor('35400','活动','1','');
+	
+		markStatusColor('35402','活动','1','');
+	
+		markStatusColor('35404','活动','1','');
+	
+		markStatusColor('35406','活动','1','');
+	
+		markStatusColor('35450','活动','1','');
+	
+		markStatusColor('35452','活动','1','');
+	
+		markStatusColor('35454','活动','1','');
+	
+		markStatusColor('35456','活动','1','');
+	
+		markStatusColor('35500','活动','1','');
+	
+		markStatusColor('35502','活动','1','');
+	
+		markStatusColor('35504','活动','1','');
+	
+		markStatusColor('35506','活动','1','');
+	
+		markStatusColor('35550','活动','1','');
+	
+		markStatusColor('35552','活动','1','');
+	
+		markStatusColor('35554','活动','1','');
+	
+		markStatusColor('35556','活动','1','');
+	
+		markStatusColor('50393','学生','1','');
+	
+		markStatusColor('50395','学生','1','');
+	
+		markStatusColor('50397','学生','1','');
+	
+		markStatusColor('50399','活动','1','');
+	
+		markStatusColor('50443','学生','1','');
+	
+		markStatusColor('50445','学生','1','');
+	
+		markStatusColor('50447','学生','1','');
+	
+		markStatusColor('50449','活动','1','');
+	
+		markStatusColor('50493','学生','1','');
+	
+		markStatusColor('50495','学生','1','');
+	
+		markStatusColor('50497','学生','1','');
+	
+		markStatusColor('50499','活动','1','');
+	
+		markStatusColor('50543','学生','1','');
+	
+		markStatusColor('50545','学生','1','');
+	
+		markStatusColor('50547','学生','1','');
+	
+		markStatusColor('50549','活动','1','');
+	
+		markStatusColor('737968','学生','1','true');
+	
+		markStatusColor('737970','老师','1','');
+	
+		markStatusColor('737972','上课','1','');
+	
+		markStatusColor('737974','上课','1','');
+	
+		markStatusColor('738019','老师','1','');
+	
+		markStatusColor('738021','学生','1','true');
+	
+		markStatusColor('738023','上课','1','');
+	
+		markStatusColor('738025','上课','1','');
+	
+});
+function markStatusColor(resId,userType,paymentStatus,present) {
+	//$("#resourceTd_"+resId).attr("userType",userType);
+	if(paymentStatus == '1'){
+		$("#resourceTd_"+resId).html("");
+		/* if(present == 'true') {
+			$("#resourceTd_"+resId).append("<font color='blue'>已到场</font>");
+		}else{
+			//$("#resourceTd_"+resId).append("<font color='green'>已交费</font>");
+		} */
+	}else{
+		$("#resourceTd_"+resId).html("<font color='red'>未交费</font>");
+	}
+}
+</script>
+</head>
+<!-- 显示预约情况的表格 -->
+<!-- 显示场馆资源的表格 -->
+
+<style type="text/css">
+
+#resourceTable {
+	border-collapse: collapse;
+	border-style:solid;
+  	border-width:3px;
+
+	vertical-align: middle;
+	font-size: 12px;
+	Table-layout: fixed;
+}
+
+#resourceTable th {
+	text-align: center;
+	padding: 0 0 0 0;
+	border-style:solid;
+	border-width:2px;
+	line-height: 20px;
+	word-wrap: break-word;
+	width: 2%;
+}
+
+
+
+#resourceTable td {
+	text-align: center;
+	padding: 0 0 0 0;
+	border-style:solid;
+	border-width:2px;
+	line-height: 20px;
+	word-wrap: break-word;
+}
+#resourceTable tr th:first-child{min-width: 70px;}
+</style>
+<input type="hidden" id="forMode" value="yuding"/>
+<input type="hidden" id="forbidName" value="消毒管理"/>
+<input type="hidden" id="forbidReason" value="消毒管理"/>
+<p id="forbidReasonShow"></p>
+<table id="resourceTable" style="font-size:10px">
+</table>
+<script>
+function Map() {
+    this.elements = new Array();
+
+    //获取MAP元素个数
+    this.size = function() {
+        return this.elements.length;
+    };
+
+    //判断MAP是否为空
+    this.isEmpty = function() {
+        return (this.elements.length < 1);
+    };
+
+    //删除MAP所有元素
+    this.clear = function() {
+        this.elements = new Array();
+    };
+
+    //向MAP中增加元素（key, value) 
+    this.put = function(_key, _value) {
+   		if(this.containsKey(_key)) {
+    		this.remove(_key);
+    	}
+        this.elements.push( {
+            key : _key,
+            value : _value
+        });
+    };
+
+    //删除指定KEY的元素，成功返回True，失败返回False
+    this.remove = function(_key) {
+        var bln = false;
+        try {
+            for (i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].key == _key) {
+                    this.elements.splice(i, 1);
+                    return true;
+                }
+            }
+        } catch (e) {
+            bln = false;
+        }
+        return bln;
+    };
+
+    //获取指定KEY的元素值VALUE，失败返回NULL
+    this.get = function(_key) {
+        try {
+            for (i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].key == _key) {
+                    return this.elements[i].value;
+                }
+            }
+        } catch (e) {
+            return null;
+        }
+    };
+
+    //获取指定索引的元素（使用element.key，element.value获取KEY和VALUE），失败返回NULL
+    this.element = function(_index) {
+        if (_index < 0 || _index >= this.elements.length) {
+            return null;
+        }
+        return this.elements[_index];
+    };
+
+    //判断MAP中是否含有指定KEY的元素
+    this.containsKey = function(_key) {
+        var bln = false;
+        try {
+            for (i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].key == _key) {
+                    bln = true;
+                }
+            }
+        } catch (e) {
+            bln = false;
+        }
+        return bln;
+    };
+
+    //判断MAP中是否含有指定VALUE的元素
+    this.containsValue = function(_value) {
+        var bln = false;
+        try {
+            for (i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].value == _value) {
+                    bln = true;
+                }
+            }
+        } catch (e) {
+            bln = false;
+        }
+        return bln;
+    };
+
+    //获取MAP中所有VALUE的数组（ARRAY）
+    this.values = function() {
+        var arr = new Array();
+        for (i = 0; i < this.elements.length; i++) {
+            arr.push(this.elements[i].value);
+        }
+        return arr;
+    };
+
+    //获取MAP中所有KEY的数组（ARRAY）
+    this.keys = function() {
+        var arr = new Array();
+        for (i = 0; i < this.elements.length; i++) {
+            arr.push(this.elements[i].key);
+        }
+        return arr;
+    };
+}
+
+
+function myserialize(objs){ 
+	var parmString = $(objs).serialize(); 
+	var parmArray = parmString.split("&"); 
+	var parmStringNew=""; 
+	$.each(parmArray,function(index,data){ 
+	var li_pos = data.indexOf("="); 
+	if(li_pos >0){ 
+		var name = data.substring(0,li_pos); 
+		var value = escape(decodeURIComponent(data.substr(li_pos+1))); 
+		var parm = name+"="+value; 
+		parmStringNew = parmStringNew=="" ? parm : parmStringNew + '&' + parm; 
+	} 
+	}); 
+	return parmStringNew; 
+}
+
+
+function ajaxSubmit(formId,callback,nowait) {
+	var params = myserialize($("#"+formId));
+	if(!nowait) {
+		$("#myWait").show();
+	}
+	$.ajax({
+	type:'POST',
+	url:$("#"+formId).attr("action"),
+	data:params,
+	success: function(dataMsg){
+		if(callback){
+			callback(dataMsg);
+		}
+		if(!nowait) {
+			$("#myWait").hide();
+		}
+	}
+  });
+}
+
+function isEmpty(value){   
+    return /^\s*$/.test(value);   
+}  
+
+
+function isDateIn(dateStr,limitCount){
+	var now = new Date();    //结束时间
+	dateStr = dateStr.replace(/-/g,"/");
+	var date = new Date(dateStr);
+	var timeDiffer = date.getTime() - now.getTime()  //时间差的毫秒数
+	//计算出相差天数
+	var dayDiffer=parseInt(timeDiffer / (1000 * 60 * 60 * 24));
+	if(dayDiffer < 0) {
+		return false;
+	}
+	return dayDiffer < limitCount;
+}
+
+Date.prototype.format = function(format) {
+    var o =
+    {
+        "M+" : this.getMonth()+1, //month
+        "d+" : this.getDate(),    //day
+        "h+" : this.getHours(),   //hour
+        "m+" : this.getMinutes(), //minute
+        "s+" : this.getSeconds(), //second
+        "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+        "S" : this.getMilliseconds() //millisecond
+    }
+    if(/(y+)/.test(format))
+    format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    for(var k in o)
+    if(new RegExp("("+ k +")").test(format))
+    format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+    return format;
+}
+</script>
+<script>
+	//点击表格头部关联点击整列
+	var forUsual = false;
+	function clickth(thobj) {
+		forUsual = false;
+		 var thisIndex = $(thobj).index();
+		var tds = $(thobj).parent().parent().find("td");
+		var forModeVal = $("#forMode").val();
+		if(forModeVal=="xuanze") {
+			tds.each(function(){
+				if($(this).index()==thisIndex) {
+					$(this).trigger('click');
+				}
+			}); 
+		}else {
+			tds.each(function(){
+				if(!forUsual) {
+					if($(this).index()==thisIndex && typeof($(this).attr("bookId"))=="undefined") {
+						$(this).trigger('click');
+					}
+				}
+			});
+		}
+	}
+	//点击表格行首关联整行
+	function clicktr(thobj) {
+		forUsual = false;
+		var tds = $(thobj).parent().find("td");
+		var forModeVal = $("#forMode").val();
+		if(forModeVal=="xuanze") {
+			tds.each(function(){
+					$(this).trigger('click');
+			}); 
+		}else {
+			tds.each(function(){
+				if(!forUsual) {
+					if(typeof($(this).attr("bookId"))=="undefined") {
+						$(this).trigger('click');
+					}
+				}
+			});
+		}
+	}
+	//点击表格行首关联全部
+	function clickAll(thobj) {
+		forUsual = false;
+		var tds = $(thobj).parent().parent().find("td");
+		var forModeVal = $("#forMode").val();
+		if(forModeVal=="xuanze") {
+			tds.each(function(){
+					$(this).trigger('click');
+			}); 
+		}else {
+			tds.each(function(){
+				if(!forUsual) {
+					if(typeof($(this).attr("bookId"))=="undefined") {
+						$(this).trigger('click');
+					}
+				}
+			});
+		}
+		$(thobj).attr("style","cursor:pointer;background-color:#00FFFF");
+	}
+	var item_name = '';
+	function renderTable(){
+		var resourceArray = new Array();
+		
+		resourceArray.push({id:'5877',time_session:'18:00-19:00',field_name:'羽1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5927',time_session:'18:00-19:00',field_name:'羽2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5977',time_session:'18:00-19:00',field_name:'羽3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'6027',time_session:'18:00-19:00',field_name:'羽4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'35406',time_session:'18:00-19:00',field_name:'羽5',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35456',time_session:'18:00-19:00',field_name:'羽6',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35506',time_session:'18:00-19:00',field_name:'羽7',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'35556',time_session:'18:00-19:00',field_name:'羽8',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'50399',time_session:'18:00-19:00',field_name:'小综合1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50449',time_session:'18:00-19:00',field_name:'小综合2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50499',time_session:'18:00-19:00',field_name:'小综合3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50549',time_session:'18:00-19:00',field_name:'小综合4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'737974',time_session:'18:00-19:00',field_name:'二层东',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'738025',time_session:'18:00-19:00',field_name:'二层西',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'5875',time_session:'19:00-20:00',field_name:'羽1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5925',time_session:'19:00-20:00',field_name:'羽2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5975',time_session:'19:00-20:00',field_name:'羽3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'6025',time_session:'19:00-20:00',field_name:'羽4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'35404',time_session:'19:00-20:00',field_name:'羽5',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35454',time_session:'19:00-20:00',field_name:'羽6',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35504',time_session:'19:00-20:00',field_name:'羽7',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'35554',time_session:'19:00-20:00',field_name:'羽8',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'50397',time_session:'19:00-20:00',field_name:'小综合1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50447',time_session:'19:00-20:00',field_name:'小综合2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50497',time_session:'19:00-20:00',field_name:'小综合3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50547',time_session:'19:00-20:00',field_name:'小综合4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'737972',time_session:'19:00-20:00',field_name:'二层东',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'738023',time_session:'19:00-20:00',field_name:'二层西',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'5873',time_session:'20:00-21:00',field_name:'羽1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5923',time_session:'20:00-21:00',field_name:'羽2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5973',time_session:'20:00-21:00',field_name:'羽3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'6023',time_session:'20:00-21:00',field_name:'羽4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'35402',time_session:'20:00-21:00',field_name:'羽5',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35452',time_session:'20:00-21:00',field_name:'羽6',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35502',time_session:'20:00-21:00',field_name:'羽7',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'35552',time_session:'20:00-21:00',field_name:'羽8',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'50395',time_session:'20:00-21:00',field_name:'小综合1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50445',time_session:'20:00-21:00',field_name:'小综合2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50495',time_session:'20:00-21:00',field_name:'小综合3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50545',time_session:'20:00-21:00',field_name:'小综合4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'737970',time_session:'20:00-21:00',field_name:'二层东',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'738021',time_session:'20:00-21:00',field_name:'二层西',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'5871',time_session:'21:00-22:00',field_name:'羽1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5921',time_session:'21:00-22:00',field_name:'羽2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'5971',time_session:'21:00-22:00',field_name:'羽3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'6021',time_session:'21:00-22:00',field_name:'羽4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'35400',time_session:'21:00-22:00',field_name:'羽5',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35450',time_session:'21:00-22:00',field_name:'羽6',overlaySize:'2',can_see_student:'',can_net_book:'1'});
+		
+		resourceArray.push({id:'35500',time_session:'21:00-22:00',field_name:'羽7',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'35550',time_session:'21:00-22:00',field_name:'羽8',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'50393',time_session:'21:00-22:00',field_name:'小综合1',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50443',time_session:'21:00-22:00',field_name:'小综合2',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50493',time_session:'21:00-22:00',field_name:'小综合3',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'50543',time_session:'21:00-22:00',field_name:'小综合4',overlaySize:'2',can_see_student:'0',can_net_book:'1'});
+		
+		resourceArray.push({id:'737968',time_session:'21:00-22:00',field_name:'二层东',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		resourceArray.push({id:'738019',time_session:'21:00-22:00',field_name:'二层西',overlaySize:'2',can_see_student:'1',can_net_book:'1'});
+		
+		
+		var head = new Map();
+		var trs = new Map();
+		
+		$.each(resourceArray,function(i,o){
+			head.put(o.field_name,o.can_see_student);
+			
+			var trArray = trs.get(o.time_session);
+			if(!trArray) {
+				trArray = new Array();
+				trs.put(o.time_session,trArray);
+			}
+			trArray.push(o);
+		}); 
+		
+		//make Th
+		if(trs.size()==0) {
+			$("#resourceTable").append("<h4>该场地在此时段不开放网上预约</h4>");
+		}else {
+			var thHtml = "<tr><th class='' onclick='clickAll(this)' onmouseover=\"this.style.cssText='cursor:pointer;background-color:#00FFFF'\" onmouseout=\"this.style.cssText='cursor:pointer'\" onmousedown=\"this.style.cssText='cursor:progress;background-color:blue'\">"+item_name+"</th>";
+			$.each(head.keys(),function(i,o){
+				thHtml += "<th class='' onclick='clickth(this)' onmouseup=\"this.style.cssText='cursor:pointer;background-color:#00FFFF'\" onmouseover=\"this.style.cssText='cursor:pointer;background-color:#00FFFF'\" onmouseout=\"this.style.cssText='cursor:pointer'\" onmousedown=\"this.style.cssText='cursor:pointer;background-color:blue'\" can_see_student='"+head.get(o)+"'>"+o+"</th>";
+			});
+			thHtml += "</tr>";
+			$("#resourceTable").append(thHtml);
+			$.each(trs.keys(),function(i,trName){
+				var trHtml = "<tr class='resourceTr' ><th class='datetime' onclick='clicktr(this)' onmouseup=\"this.style.cssText='cursor:pointer;background-color:#00FFFF'\" onmouseover=\"this.style.cssText='cursor:pointer;background-color:#00FFFF'\" onmouseout=\"this.style.cssText='cursor:pointer'\" onmousedown=\"this.style.cssText='cursor:pointer;background-color:blue'\">"+trName+"</th>";
+				$.each(trs.get(trName),function(i2,resObj){
+					trHtml += "<td class='resourceTd' id='resourceTd_"+resObj.id+"' fieldName=\""+resObj.field_name+"\" time_session=\""+resObj.time_session+"\" overlaySize=\""+resObj.overlaySize+"\"  resource_id = \""+resObj.id+"\" can_see_student='"+resObj.can_see_student+"' can_net_book='"+resObj.can_net_book+"'>&nbsp;<div id='res_div_"+resObj.id+"' class='simpleDiv'></div></td>";
+				});
+				trHtml += "</tr>";
+				$("#resourceTable").append(trHtml);
+			});
+		}
+	}
+	
+	renderTable();
+</script>
+
+<script>
+
+	//add 状态
+	function markResStatus(bookId,resId,status) {
+		$("#resourceTd_"+resId).attr("bookId",bookId);
+		if(status == '1'){
+			$("#resourceTd_"+resId).attr("lock","true");
+			$("#resourceTd_"+resId).css("background","yellow");
+		}
+	}
+	//updateInTime
+	
+		markResStatus('2522254','5871','1');
+	
+		markResStatus('2522252','5873','1');
+	
+		markResStatus('2522230','5875','1');
+	
+		markResStatus('2522228','5877','1');
+	
+		markResStatus('2522263','5921','1');
+	
+		markResStatus('2522261','5923','1');
+	
+		markResStatus('2522283','5925','1');
+	
+		markResStatus('2522236','5927','1');
+	
+		markResStatus('2522241','5971','1');
+	
+		markResStatus('2522239','5973','1');
+	
+		markResStatus('2522274','5975','1');
+	
+		markResStatus('2522244','5977','1');
+	
+		markResStatus('2522286','6021','1');
+	
+		markResStatus('2522215','6023','1');
+	
+		markResStatus('2522213','6025','1');
+	
+		markResStatus('2522347','6027','1');
+	
+		markResStatus('2174746','35400','1');
+	
+		markResStatus('2174738','35402','1');
+	
+		markResStatus('2174730','35404','1');
+	
+		markResStatus('2174723','35406','1');
+	
+		markResStatus('2174747','35450','1');
+	
+		markResStatus('2174739','35452','1');
+	
+		markResStatus('2174731','35454','1');
+	
+		markResStatus('2174722','35456','1');
+	
+		markResStatus('2174748','35500','1');
+	
+		markResStatus('2174740','35502','1');
+	
+		markResStatus('2174732','35504','1');
+	
+		markResStatus('2174724','35506','1');
+	
+		markResStatus('2174749','35550','1');
+	
+		markResStatus('2174741','35552','1');
+	
+		markResStatus('2174733','35554','1');
+	
+		markResStatus('2174725','35556','1');
+	
+		markResStatus('2522267','50393','1');
+	
+		markResStatus('2522344','50395','1');
+	
+		markResStatus('2522280','50397','1');
+	
+		markResStatus('2177976','50399','1');
+	
+		markResStatus('2522220','50443','1');
+	
+		markResStatus('2522218','50445','1');
+	
+		markResStatus('2522277','50447','1');
+	
+		markResStatus('2177977','50449','1');
+	
+		markResStatus('2522270','50493','1');
+	
+		markResStatus('2522249','50495','1');
+	
+		markResStatus('2522247','50497','1');
+	
+		markResStatus('2177978','50499','1');
+	
+		markResStatus('2522225','50543','1');
+	
+		markResStatus('2522223','50545','1');
+	
+		markResStatus('2522290','50547','1');
+	
+		markResStatus('2177979','50549','1');
+	
+		markResStatus('2525302','737968','1');
+	
+		markResStatus('2523398','737970','1');
+	
+		markResStatus('2206300','737972','1');
+	
+		markResStatus('2206296','737974','1');
+	
+		markResStatus('2525202','738019','1');
+	
+		markResStatus('2525281','738021','1');
+	
+		markResStatus('2206301','738023','1');
+	
+		markResStatus('2206297','738025','1');
+	
+	//updateForUnsubscribe
+	  
+	
+	//设置td时间值以及是否过期 (格式 '5:00-6:00') 超过结束时间算过期
+	function isLate(time_date,tSession) {
+		var now = new Date();
+	    var sd=time_date.split("-");
+	    eval("sd[1]=" + sd[1] + "-1");
+	    var dNow = new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+	    var dTarget = new Date(sd[0],sd[1],sd[2]).getTime();
+		if( dNow > dTarget) {
+			return true;
+		}else{
+			if(dNow == dTarget){
+				var endHour = tSession.substr(tSession.indexOf('-') + 1);
+				endHour = endHour.substring(0,endHour.indexOf(':'));
+				eval("endHour="+endHour+";");
+				
+				if(now.getHours() >= endHour) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	  
+  	var time_date = '2022-10-25';
+	$.each($(".resourceTd"),function(i,o){
+		$(o).attr("time_date",time_date);
+		var tdTime_session = $(o).attr("time_session");
+		if(isLate(time_date,tdTime_session)) {
+			$(o).attr("isLate","true");
+		}
+		var catNet = $(o).attr("can_net_book");
+		if(catNet == '0'){
+			$(o).attr("isCatNet","true");
+		}
+	});
+	
+	
+	//添加价格
+	function addCost(resId,cost) {
+		var resTdId="resourceTd_"+resId;
+		$("#"+resTdId).attr("cost",cost);
+	}
+	
+	
+		addCost('5871','20.0');
+	
+		addCost('5873','20.0');
+	
+		addCost('5875','20.0');
+	
+		addCost('5877','20.0');
+	
+		addCost('5921','20.0');
+	
+		addCost('5923','20.0');
+	
+		addCost('5925','20.0');
+	
+		addCost('5927','20.0');
+	
+		addCost('5971','20.0');
+	
+		addCost('5973','20.0');
+	
+		addCost('5975','20.0');
+	
+		addCost('5977','20.0');
+	
+		addCost('6021','20.0');
+	
+		addCost('6023','20.0');
+	
+		addCost('6025','20.0');
+	
+		addCost('6027','20.0');
+	
+		addCost('35400','20.0');
+	
+		addCost('35402','20.0');
+	
+		addCost('35404','20.0');
+	
+		addCost('35406','20.0');
+	
+		addCost('35450','20.0');
+	
+		addCost('35452','20.0');
+	
+		addCost('35454','20.0');
+	
+		addCost('35456','20.0');
+	
+		addCost('35500','20.0');
+	
+		addCost('35502','20.0');
+	
+		addCost('35504','20.0');
+	
+		addCost('35506','20.0');
+	
+		addCost('35550','20.0');
+	
+		addCost('35552','20.0');
+	
+		addCost('35554','20.0');
+	
+		addCost('35556','20.0');
+	
+		addCost('50393','20.0');
+	
+		addCost('50395','20.0');
+	
+		addCost('50397','20.0');
+	
+		addCost('50399','20.0');
+	
+		addCost('50443','20.0');
+	
+		addCost('50445','20.0');
+	
+		addCost('50447','20.0');
+	
+		addCost('50449','20.0');
+	
+		addCost('50493','20.0');
+	
+		addCost('50495','20.0');
+	
+		addCost('50497','20.0');
+	
+		addCost('50499','20.0');
+	
+		addCost('50543','20.0');
+	
+		addCost('50545','20.0');
+	
+		addCost('50547','20.0');
+	
+		addCost('50549','20.0');
+	
+		addCost('737968','20.0');
+	
+		addCost('737970','20.0');
+	
+		addCost('737972','20.0');
+	
+		addCost('737974','20.0');
+	
+		addCost('738019','20.0');
+	
+		addCost('738021','20.0');
+	
+		addCost('738023','20.0');
+	
+		addCost('738025','20.0');
+	
+	
+	
+	//管理员临时指定禁止网上预定
+	
+	
+</script>
+	
+
+        
