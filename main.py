@@ -182,28 +182,4 @@ X-Requested-With: XMLHttpRequest''')
     datas = deal_arg(data)
     main()
 
-# ls=deal_arg('''bookData.totalCost:
-# bookData.book_person_zjh:
-# bookData.book_person_name:
-# bookData.book_person_phone: 17879539869
-# gymnasium_idForCache: 2
-# item_idForCache: 5326
-# time_dateForCache: 2022-10-21
-# userTypeNumForCache: 1
-# putongRes: putongRes
-# selectedPayWay: 1
-# allFieldTime: 5477#2022-10-21
-# companion_1:
-# companion_2:
-# companion_3:
-# companion_4:
-# companion_5:
-# companion_6:
-# companion_7:
-# companion_8:
-# companion_9:
-# checkcodeuser: 84
-# selectPayWay: 1''')
-# for i in datas:
-#     if datas[i]!=ls[i]:
-#         print(datas[i],ls[i])
+
